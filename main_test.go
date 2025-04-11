@@ -105,12 +105,11 @@ func TestCafeSearch(t *testing.T) {
 		got := strings.TrimSpace(response.Body.String())
 		require.Equal(t, http.StatusOK, response.Code)
 
-		// it fails when scenario is blank string
-		// for _, item := range strings.Split(got, ",") {
-		// 	if got != "" {
-		// 		assert.Contains(t, strings.ToLower(item), strings.ToLower(v.search))
-		// 	}
-		// }
+		for _, item := range strings.Split(got, ",") {
+			if got != "" {
+				assert.Contains(t, strings.ToLower(item), strings.ToLower(v.search))
+			}
+		}
 		if got == "" {
 			assert.Equal(t, v.wantCount, 0)
 		} else {
